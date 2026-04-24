@@ -15,7 +15,7 @@ export default function Home() {
                 <h1>White Glove Cleaning</h1>
               </div>
             </div>
-            <a className="phone-chip" href="tel:+16025550199">
+            <a className="phone-chip" href="tel:+17252519337">
               Call for same-week availability
             </a>
           </header>
@@ -150,11 +150,14 @@ export default function Home() {
             </p>
           </div>
           <div className="cta-links">
-            <a className="primary-button" href="mailto:hello@whiteglovecleaning.co">
-              hello@whiteglovecleaning.co
+            <a
+              className="primary-button"
+              href="mailto:whiteglovescleaningaz@gmail.com"
+            >
+              whiteglovescleaningaz@gmail.com
             </a>
-            <a className="secondary-button" href="tel:+16025550199">
-              (602) 555-0199
+            <a className="secondary-button" href="tel:+17252519337">
+              (725) 251-9337
             </a>
           </div>
         </div>
