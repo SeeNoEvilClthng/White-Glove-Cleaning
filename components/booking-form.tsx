@@ -28,6 +28,30 @@ const initialBooking: BookingInput = {
   notes: "",
 };
 
+const cities = [
+  "Phoenix",
+  "Scottsdale",
+  "Tempe",
+  "Mesa",
+  "Chandler",
+  "Gilbert",
+  "Glendale",
+  "Peoria",
+];
+
+const fieldLabels = {
+  customerName: "Operator name",
+  email: "Work email",
+  address: "Target market focus",
+  city: "Primary market",
+  serviceId: "Platform tier",
+  frequency: "Billing cadence",
+  bedrooms: "Seats",
+  bathrooms: "Active campaigns",
+  squareFootage: "Monthly lead volume",
+  notes: "Team notes",
+} as const;
+
 export function BookingForm() {
   const [booking, setBooking] = useState<BookingInput>(initialBooking);
   const [error, setError] = useState("");
@@ -99,49 +123,59 @@ export function BookingForm() {
 
   return (
     <form className="booking-card" onSubmit={handleSubmit}>
+      <div className="booking-card__intro">
+        <p className="card-label">Workspace setup</p>
+        <h3>Launch your lead stack</h3>
+        <p>
+          Shape your plan, market, campaign load, and add-on tooling before
+          continuing to secure checkout.
+        </p>
+      </div>
+
       <div className="field-grid">
         <label>
-          Full name
+          {fieldLabels.customerName}
           <input
             required
             value={booking.customerName}
             onChange={(event) => updateField("customerName", event.target.value)}
+            placeholder="Your name or acquisitions team"
           />
         </label>
         <label>
-          Email
+          {fieldLabels.email}
           <input
             required
             type="email"
             value={booking.email}
             onChange={(event) => updateField("email", event.target.value)}
+            placeholder="you@propsniper.com"
           />
         </label>
         <label className="span-2">
-          Service address
+          {fieldLabels.address}
           <input
             required
             value={booking.address}
             onChange={(event) => updateField("address", event.target.value)}
+            placeholder="Example: West Valley absentee owners"
           />
         </label>
         <label>
-          City
+          {fieldLabels.city}
           <select
             value={booking.city}
             onChange={(event) => updateField("city", event.target.value)}
           >
-            {["Phoenix", "Scottsdale", "Tempe", "Mesa", "Chandler", "Gilbert", "Glendale", "Peoria"].map(
-              (city) => (
-                <option key={city} value={city}>
-                  {city}
-                </option>
-              ),
-            )}
+            {cities.map((city) => (
+              <option key={city} value={city}>
+                {city}
+              </option>
+            ))}
           </select>
         </label>
         <label>
-          Cleaning type
+          {fieldLabels.serviceId}
           <select
             value={booking.serviceId}
             onChange={(event) => updateField("serviceId", event.target.value)}
@@ -154,7 +188,7 @@ export function BookingForm() {
           </select>
         </label>
         <label>
-          Frequency
+          {fieldLabels.frequency}
           <select
             value={booking.frequency}
             onChange={(event) =>
@@ -164,14 +198,14 @@ export function BookingForm() {
               )
             }
           >
-            <option value="one-time">One-time</option>
-            <option value="weekly">Weekly</option>
-            <option value="biweekly">Biweekly</option>
-            <option value="monthly">Monthly</option>
+            <option value="one-time">Monthly</option>
+            <option value="weekly">Annual prepaid</option>
+            <option value="biweekly">Quarterly</option>
+            <option value="monthly">Starter promo</option>
           </select>
         </label>
         <label>
-          Bedrooms
+          {fieldLabels.bedrooms}
           <input
             min={1}
             max={8}
@@ -181,7 +215,7 @@ export function BookingForm() {
           />
         </label>
         <label>
-          Bathrooms
+          {fieldLabels.bathrooms}
           <input
             min={1}
             max={8}
@@ -191,7 +225,7 @@ export function BookingForm() {
           />
         </label>
         <label>
-          Square footage
+          {fieldLabels.squareFootage}
           <input
             min={500}
             max={6000}
@@ -204,18 +238,18 @@ export function BookingForm() {
           />
         </label>
         <label className="span-2">
-          Special notes
+          {fieldLabels.notes}
           <textarea
             rows={4}
             value={booking.notes}
             onChange={(event) => updateField("notes", event.target.value)}
-            placeholder="Gate code, pets, focus areas, or move-out timing"
+            placeholder="Tell us about team size, list strategy, or onboarding priorities."
           />
         </label>
       </div>
 
       <fieldset className="extras-fieldset">
-        <legend>Add-on details</legend>
+        <legend>Activation add-ons</legend>
         <div className="extras-grid">
           {extraOptions.map((extra) => (
             <label className="extra-option" key={extra.id}>
@@ -238,7 +272,7 @@ export function BookingForm() {
           <p>{estimate.summary}</p>
         </div>
         <button className="primary-button" disabled={isSubmitting} type="submit">
-          {isSubmitting ? "Redirecting to Stripe..." : "Continue to secure payment"}
+          {isSubmitting ? "Routing to Stripe..." : "Continue to secure checkout"}
         </button>
       </div>
 

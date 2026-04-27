@@ -2,16 +2,16 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://whiteglovecleaning.example"),
-  title: "White Glove Cleaning | Phoenix Metro Home Cleaning",
+  metadataBase: new URL("https://propsniper.example"),
+  title: "Prop Sniper | Real Estate Lead Platform",
   description:
-    "Premium house cleaning for busy Phoenix Metro homes. Book deep cleans, recurring service, and move-in or move-out cleanings online.",
+    "Prop Sniper is a purple-and-black real estate lead platform for list building, lead routing, and investor outreach workflows.",
   openGraph: {
-    title: "White Glove Cleaning",
+    title: "Prop Sniper",
     description:
-      "Premium home cleaning across the Phoenix Metro with fast booking and secure online payment.",
-    url: "https://whiteglovecleaning.example",
-    siteName: "White Glove Cleaning",
+      "Run data, pipeline, and outreach from one investor-focused operating system.",
+    url: "https://propsniper.example",
+    siteName: "Prop Sniper",
     type: "website",
   },
 };

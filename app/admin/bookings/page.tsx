@@ -26,20 +26,20 @@ export default async function AdminBookingsPage() {
         <div className="admin-header">
           <div>
             <p className="section-kicker">Admin</p>
-            <h1>Paid bookings</h1>
+            <h1>Paid activations</h1>
             <p>
               This view is populated by Stripe webhook events after successful
-              checkout.
+              Prop Sniper checkouts.
             </p>
           </div>
           <div className="admin-chip-group">
             <div className="admin-chip">
               <strong>{bookings.length}</strong>
-              <span>Total captured bookings</span>
+              <span>Total captured activations</span>
             </div>
             <div className="admin-chip">
               <strong>{formatCurrency(totalRevenue)}</strong>
-              <span>Total tracked revenue</span>
+              <span>Total tracked platform revenue</span>
             </div>
           </div>
         </div>
@@ -48,12 +48,12 @@ export default async function AdminBookingsPage() {
           <table className="admin-table">
             <thead>
               <tr>
-                <th>Customer</th>
-                <th>Service</th>
-                <th>Location</th>
+                <th>Operator</th>
+                <th>Plan</th>
+                <th>Market</th>
                 <th>Total</th>
                 <th>Status</th>
-                <th>Paid at</th>
+                <th>Activated at</th>
               </tr>
             </thead>
             <tbody>
@@ -67,8 +67,8 @@ export default async function AdminBookingsPage() {
                     <td>
                       <strong>{booking.service}</strong>
                       <span>
-                        {booking.frequency} • {booking.bedrooms} bed /{" "}
-                        {booking.bathrooms} bath
+                        {booking.frequency} • {booking.bedrooms} seats /{" "}
+                        {booking.bathrooms} campaigns
                       </span>
                     </td>
                     <td>
@@ -85,8 +85,8 @@ export default async function AdminBookingsPage() {
               ) : (
                 <tr>
                   <td colSpan={6}>
-                    No paid bookings yet. Complete a live Stripe checkout and the
-                    webhook will add it here.
+                    No paid activations yet. Complete a live Stripe checkout and
+                    the webhook will add it here.
                   </td>
                 </tr>
               )}

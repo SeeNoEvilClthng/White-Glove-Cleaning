@@ -1,75 +1,167 @@
 import { BookingForm } from "@/components/booking-form";
 import { BrandMark } from "@/components/brand-mark";
-import { services, serviceAreas, trustPoints } from "@/lib/site-data";
+import {
+  activityFeed,
+  comparisonRows,
+  dashboardNav,
+  featurePillars,
+  filterChips,
+  heroMetrics,
+  pipelineStages,
+  proofStats,
+  spotlightCards,
+  workflowSteps,
+} from "@/lib/site-data";
 
 export default function Home() {
   return (
-    <main>
+    <main className="page-shell">
       <section className="hero">
         <div className="shell">
           <header className="topbar">
             <div className="brand-lockup">
               <BrandMark />
               <div>
-                <p className="eyebrow">Phoenix Metro premium cleaning</p>
-                <h1>White Glove Cleaning</h1>
+                <p className="eyebrow">Investor operating system</p>
+                <h1>Prop Sniper</h1>
               </div>
             </div>
-            <a className="phone-chip" href="tel:+17252519337">
-              Call for same-week availability
+            <nav className="topbar-nav" aria-label="Primary">
+              <a href="#platform">Platform</a>
+              <a href="#workflow">Workflow</a>
+              <a href="#pricing">Pricing</a>
+            </nav>
+            <a className="phone-chip" href="#pricing">
+              Start your setup
             </a>
           </header>
 
           <div className="hero-grid">
             <div className="hero-copy">
-              <p className="kicker">Luxury-level care without the luxury hassle</p>
-              <h2>
-                Sparkling homes, simple online booking, and full-payment checkout
-                in minutes.
-              </h2>
+              <p className="kicker">Modeled after the fast, all-in-one wholesaling feel of xLeads</p>
+              <h2>Pull better property lists, run your lead pipeline, and launch outreach from one purple-black command center.</h2>
               <p className="lede">
-                White Glove Cleaning helps Phoenix Metro households stay polished
-                with recurring maintenance, deep cleans, and move-focused service
-                delivered by detail-first professionals.
+                Prop Sniper is built for investors who want the SaaS speed of
+                modern wholesaling tools without losing focus. Search, qualify,
+                route, and activate leads in one tight flow.
               </p>
               <div className="hero-actions">
-                <a className="primary-button" href="#booking">
-                  Book and pay online
+                <a className="primary-button" href="#pricing">
+                  Start Prop Sniper
                 </a>
-                <a className="secondary-button" href="#services">
-                  Explore services
+                <a className="secondary-button" href="#platform">
+                  Explore platform
                 </a>
               </div>
-              <ul className="stat-row" aria-label="Company highlights">
-                <li>
-                  <strong>100%</strong>
-                  <span>Secure Stripe checkout</span>
-                </li>
-                <li>
-                  <strong>7 days</strong>
-                  <span>Phoenix Metro availability</span>
-                </li>
-                <li>
-                  <strong>Flat-rate</strong>
-                  <span>Pricing with add-on options</span>
-                </li>
+              <ul className="stat-row" aria-label="Platform highlights">
+                {heroMetrics.map((metric) => (
+                  <li key={metric.label}>
+                    <strong>{metric.value}</strong>
+                    <span>{metric.label}</span>
+                  </li>
+                ))}
               </ul>
             </div>
 
-            <div className="hero-card">
-              <p className="card-label">What clients book most</p>
-              <div className="service-spotlight">
-                <h3>Signature Deep Clean</h3>
-                <p>
-                  Kitchens, bathrooms, dusting, floors, baseboards, detail work,
-                  and a high-touch finishing pass for that just-reset feeling.
-                </p>
+            <div className="hero-panel">
+              <div className="hero-appframe">
+                <aside className="hero-appframe__sidebar" aria-label="Demo app navigation">
+                  <div className="hero-appframe__brand">
+                    <BrandMark />
+                    <div>
+                      <strong>Prop Sniper</strong>
+                      <span>Acquisition OS</span>
+                    </div>
+                  </div>
+                  <div className="hero-navlist">
+                    {dashboardNav.map((item, index) => (
+                      <span
+                        className={index === 0 ? "hero-navlist__item hero-navlist__item--active" : "hero-navlist__item"}
+                        key={item}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="hero-appframe__sidecard">
+                    <small>Today</small>
+                    <strong>18 hot leads</strong>
+                    <span>Priority queue ready for SMS and dialer follow-up.</span>
+                  </div>
+                </aside>
+
+                <div className="hero-panel__card hero-panel__card--primary">
+                  <div className="signal-row">
+                    <span className="signal-pill signal-pill--live">Live filters</span>
+                    <span className="signal-pill">Maricopa County</span>
+                    <span className="signal-pill">Updated 2m ago</span>
+                  </div>
+                  <div className="hero-panel__header">
+                    <div>
+                      <h3>Lead command view</h3>
+                      <p>
+                        Distressed absentee owners, high equity, recent tax
+                        pressure, and quick-routing actions lined up in one
+                        command center.
+                      </p>
+                    </div>
+                    <div className="hero-scorecard">
+                      <small>Lead score</small>
+                      <strong>89</strong>
+                    </div>
+                  </div>
+
+                  <div className="chip-cluster">
+                    {filterChips.map((chip) => (
+                      <span className="chip-cluster__item" key={chip}>
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="hero-appgrid">
+                    <div className="hero-stack">
+                      {spotlightCards.map((card) => (
+                        <article className="hero-stack__item" key={card.title}>
+                          <strong>{card.title}</strong>
+                          <span>{card.description}</span>
+                        </article>
+                      ))}
+                    </div>
+
+                    <div className="pipeline-preview">
+                      <div className="pipeline-preview__header">
+                        <strong>Pipeline board</strong>
+                        <span>142 active leads</span>
+                      </div>
+                      <div className="pipeline-preview__columns">
+                        {pipelineStages.map((stage) => (
+                          <article className="pipeline-stage" key={stage.title}>
+                            <small>{stage.title}</small>
+                            <strong>{stage.count}</strong>
+                            <span>Live records</span>
+                          </article>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="activity-list" aria-label="Recent activity">
+                    {activityFeed.map((item) => (
+                      <div className="activity-list__item" key={item}>
+                        <span />
+                        <p>{item}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-              <div className="checklist">
-                {trustPoints.map((point) => (
-                  <div className="check-item" key={point.title}>
-                    <span>{point.title}</span>
-                    <small>{point.description}</small>
+
+              <div className="hero-proofbar" aria-label="Performance stats">
+                {proofStats.map((item) => (
+                  <div className="micro-card" key={item.label}>
+                    <small>{item.label}</small>
+                    <strong>{item.value}</strong>
                   </div>
                 ))}
               </div>
@@ -78,61 +170,113 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="content-section" id="services">
+      <section className="content-section content-section--dense" id="platform">
         <div className="shell">
           <div className="section-heading">
-            <p className="section-kicker">Services</p>
-            <h2>Built for the way Phoenix homes actually live</h2>
+            <p className="section-kicker">Platform</p>
+            <h2>The all-in-one wholesaling rhythm, adapted for Prop Sniper.</h2>
             <p>
-              Start with a core cleaning package, then personalize it with home
-              size adjustments and extra-detail add-ons during checkout.
+              The goal here is the same feeling the xLeads video sells: one tool
+              that takes you from finding the record to working the deal, but
+              with your own darker Prop Sniper identity.
             </p>
           </div>
 
-          <div className="service-grid">
-            {services.map((service) => (
-              <article className="service-card" key={service.name}>
-                <p className="service-price">From ${service.basePrice}</p>
-                <h3>{service.name}</h3>
-                <p>{service.description}</p>
+          <div className="feature-grid">
+            {featurePillars.map((pillar) => (
+              <article className="feature-card" key={pillar.title}>
+                <p className="card-label">{pillar.label}</p>
+                <h3>{pillar.title}</h3>
+                <p>{pillar.description}</p>
                 <ul>
-                  {service.features.map((feature) => (
-                    <li key={feature}>{feature}</li>
+                  {pillar.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
                   ))}
                 </ul>
+              </article>
+            ))}
+          </div>
+
+          <div className="platform-strip" aria-label="Core modules">
+            <article className="platform-strip__card">
+              <p className="card-label">List intelligence</p>
+              <strong>Saved stacks, territory slices, and filter presets</strong>
+              <span>Built to feel instant, dense, and operator-friendly.</span>
+            </article>
+            <article className="platform-strip__card">
+              <p className="card-label">Acquisition workflow</p>
+              <strong>Hot-lead routing with next actions baked in</strong>
+              <span>No spreadsheet hopping once a lead gets interesting.</span>
+            </article>
+            <article className="platform-strip__card">
+              <p className="card-label">Contact activation</p>
+              <strong>Skip trace, SMS, dialer, and dispo context in one stack</strong>
+              <span>Closer to the xLeads promise, but in your own voice.</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="content-section accent-section" id="workflow">
+        <div className="shell split-layout">
+          <div>
+            <p className="section-kicker">Workflow</p>
+            <h2>Designed to move like a lead machine, not a brochure site.</h2>
+            <p>
+              Instead of generic marketing sections, this layout leans into the
+              fast-moving SaaS pattern from the reference: focused metrics,
+              product cards, and a clear path into setup.
+            </p>
+          </div>
+          <div className="workflow-list">
+            {workflowSteps.map((item) => (
+              <article className="workflow-card" key={item.step}>
+                <span>{item.step}</span>
+                <div>
+                  <strong>{item.title}</strong>
+                  <p>{item.description}</p>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="content-section accent-section" id="areas">
-        <div className="shell split-layout">
-          <div>
-            <p className="section-kicker">Service area</p>
-            <h2>Serving the Phoenix Metro</h2>
+      <section className="content-section">
+        <div className="shell comparison-card">
+          <div className="section-heading compact">
+            <p className="section-kicker">Why it feels different</p>
+            <h2>Prop Sniper now reads like a platform instead of a service flyer.</h2>
             <p>
-              We’re positioned for homes across the Valley, from quick recurring
-              visits to move-out turnarounds and one-time reset cleanings.
+              This section mirrors the comparison-heavy SaaS framing common in
+              wholesaling tools, while staying grounded in your own branding.
             </p>
           </div>
-          <div className="area-list" aria-label="Service areas">
-            {serviceAreas.map((area) => (
-              <span key={area}>{area}</span>
+          <div className="comparison-table" role="table" aria-label="Platform comparison">
+            <div className="comparison-table__head" role="row">
+              <span role="columnheader">Category</span>
+              <span role="columnheader">Prop Sniper</span>
+              <span role="columnheader">Old-school workflow</span>
+            </div>
+            {comparisonRows.map((row) => (
+              <div className="comparison-table__row" role="row" key={row.label}>
+                <span role="cell">{row.label}</span>
+                <span role="cell">{row.propSniper}</span>
+                <span role="cell">{row.legacy}</span>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="content-section" id="booking">
+      <section className="content-section" id="pricing">
         <div className="shell booking-layout">
           <div className="section-heading compact">
-            <p className="section-kicker">Book now</p>
-            <h2>Choose your cleaning, confirm your details, and pay securely.</h2>
+            <p className="section-kicker">Pricing and setup</p>
+            <h2>Choose a Prop Sniper tier, tailor your workspace, and continue to secure checkout.</h2>
             <p>
-              The booking tool calculates a live estimate and sends you into
-              Stripe Checkout for full payment. You can update service details
-              before paying.
+              The checkout flow stays live, but the interface now feels like a
+              product onboarding step instead of a cleaning quote form.
             </p>
           </div>
           <BookingForm />
@@ -142,22 +286,20 @@ export default function Home() {
       <section className="content-section">
         <div className="shell final-cta">
           <div>
-            <p className="section-kicker">Questions before booking?</p>
-            <h2>We can help you choose the right cleaning plan.</h2>
+            <p className="section-kicker">Launch faster</p>
+            <h2>Get the xLeads-style energy with a Prop Sniper finish.</h2>
             <p>
-              Reach out for help with pricing, large homes, special requests, or
-              move-in and move-out scheduling.
+              This version is set up to sell a platform: sharper hierarchy,
+              dashboard cues, stronger conversion focus, and a purple-black
+              visual system throughout.
             </p>
           </div>
           <div className="cta-links">
-            <a
-              className="primary-button"
-              href="mailto:whiteglovescleaningaz@gmail.com"
-            >
-              whiteglovescleaningaz@gmail.com
+            <a className="primary-button" href="#pricing">
+              Build your workspace
             </a>
-            <a className="secondary-button" href="tel:+17252519337">
-              (725) 251-9337
+            <a className="secondary-button" href="/admin/bookings">
+              View admin dashboard
             </a>
           </div>
         </div>

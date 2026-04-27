@@ -1,27 +1,27 @@
 export const pricingServices = [
   {
     id: "standard",
-    name: "Recurring Home Refresh",
+    name: "Starter Hunting Stack",
     basePrice: 159,
   },
   {
     id: "deep",
-    name: "Signature Deep Clean",
+    name: "Pro Acquisition Stack",
     basePrice: 249,
   },
   {
     id: "move",
-    name: "Move In / Move Out Clean",
+    name: "Team Scale Stack",
     basePrice: 329,
   },
 ] as const;
 
 export const extraOptions = [
-  { id: "inside-fridge", label: "Inside fridge", price: 25 },
-  { id: "inside-oven", label: "Inside oven", price: 30 },
-  { id: "interior-windows", label: "Interior windows", price: 45 },
-  { id: "laundry-fold", label: "Laundry fold service", price: 35 },
-  { id: "baseboards", label: "Detailed baseboards", price: 40 },
+  { id: "inside-fridge", label: "Skip-trace activation", price: 25 },
+  { id: "inside-oven", label: "SMS workflow setup", price: 30 },
+  { id: "interior-windows", label: "Dialer routing pack", price: 45 },
+  { id: "laundry-fold", label: "AI list stacking", price: 35 },
+  { id: "baseboards", label: "Dispo collaboration seats", price: 40 },
 ] as const;
 
 export type BookingInput = {
@@ -64,6 +64,6 @@ export function calculateBookingEstimate(input: BookingInput) {
 
   return {
     total,
-    summary: `${service.name} for a ${input.bedrooms} bed / ${input.bathrooms} bath home in ${input.city}.`,
+    summary: `${service.name} for ${input.bedrooms} seats, ${input.bathrooms} active campaigns, focused on ${input.city}.`,
   };
 }
